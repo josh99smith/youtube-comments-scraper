@@ -208,6 +208,7 @@ You can also attach [webhooks](https://docs.apify.com/platform/integrations/webh
 
 ## Related Actors by the same developer
 
+- [Best Damn YouTube Scraper](https://apify.com/josh99smith/youtube-scraper): videos, channels, playlists and search results with statistics.
 - [Best Damn App Reviews Scraper](https://apify.com/josh99smith/app-reviews-scraper): App Store and Google Play reviews as JSON.
 - [Best Damn Google Autocomplete Scraper](https://apify.com/josh99smith/google-autocomplete-scraper): keyword suggestions from Google search.
 - [Best Damn RSS to JSON Converter](https://apify.com/josh99smith/rss-feed-to-json): RSS and Atom feeds as JSON.

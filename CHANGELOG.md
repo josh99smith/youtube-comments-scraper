@@ -7,3 +7,4 @@
 - Author data modes: include, pseudonymise (stable per-user hash) or omit; isByVideoOwner flag in every mode.
 - Free failure records for invalid URLs, missing or private videos, disabled comments, quota and key errors; the run stops cleanly when the key quota is used up.
 - Built-in shared API key with optional own key (`apiKey` input, falls back to the `YOUTUBE_API_KEY` environment variable).
+- README: link to the new Best Damn YouTube Scraper.
