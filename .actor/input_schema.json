@@ -1,0 +1,88 @@
+{
+    "$schema": "https://apify.com/schemas/v1/input.ide.json",
+    "title": "Best Damn YouTube Comments Scraper input",
+    "description": "Paste YouTube video, Shorts or channel URLs. Every comment (and reply, if enabled) delivered is one billable result; videos that cannot be read are reported free of charge.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrls": {
+            "title": "YouTube URLs",
+            "type": "array",
+            "description": "One per line. Accepts video URLs (youtube.com/watch?v=..., youtu.be/...), Shorts and live URLs, bare 11-character video IDs, and channel URLs (youtube.com/@handle, youtube.com/channel/UC...) or @handles. For a channel, the Actor reads its most recent videos (see \"Videos per channel\").",
+            "editor": "stringList",
+            "prefill": ["https://www.youtube.com/watch?v=jNQXAC9IVRw"]
+        },
+        "maxComments": {
+            "title": "Max comments per video",
+            "type": "integer",
+            "description": "Stop after this many comments per video (replies count toward the limit). Use 0 for every comment the video has.",
+            "default": 100,
+            "prefill": 50,
+            "minimum": 0,
+            "editor": "number"
+        },
+        "sortBy": {
+            "title": "Sort order",
+            "type": "string",
+            "description": "\"Top comments\" is YouTube's relevance order (what viewers see first). \"Newest first\" is reverse chronological and is the fastest way to get only recent comments together with \"Only comments after\".",
+            "editor": "select",
+            "enum": ["relevance", "time"],
+            "enumTitles": ["Top comments", "Newest first"],
+            "default": "relevance"
+        },
+        "includeReplies": {
+            "title": "Include replies",
+            "type": "boolean",
+            "description": "Also return the replies under each comment, in conversation order, marked with isReply and parentCommentId.",
+            "default": false
+        },
+        "publishedAfter": {
+            "title": "Only comments after",
+            "type": "string",
+            "description": "Optional. Skip comments posted before this date. Use a date (2026-01-31) or a relative period such as \"7 days\", \"2 weeks\" or \"3 months\".",
+            "editor": "textfield"
+        },
+        "searchTerms": {
+            "title": "Only comments containing",
+            "type": "string",
+            "description": "Optional. Return only top-level comments that contain these words (YouTube's own comment search).",
+            "editor": "textfield"
+        },
+        "authorData": {
+            "title": "Author data",
+            "type": "string",
+            "description": "What to output about each commenter. \"Include\" gives the public display name and channel; \"Pseudonymise\" replaces the channel ID with a stable hash and drops name and avatar, so you can still count repeat commenters; \"Omit\" removes all author fields.",
+            "editor": "select",
+            "enum": ["include", "hash", "omit"],
+            "enumTitles": ["Include", "Pseudonymise (hash)", "Omit"],
+            "default": "include"
+        },
+        "maxVideosPerChannel": {
+            "title": "Videos per channel",
+            "type": "integer",
+            "description": "For channel URLs: how many of the channel's most recent uploads to read comments from.",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 500,
+            "editor": "number",
+            "sectionCaption": "Advanced"
+        },
+        "apiKey": {
+            "title": "YouTube API key",
+            "type": "string",
+            "description": "Optional. Your own free YouTube Data API v3 key (Google Cloud Console > APIs & Services > Credentials, with the YouTube Data API v3 enabled). Without it the Actor uses a shared key whose daily quota is shared by all users; your own key gives you 10,000 quota units a day (about a million comments).",
+            "editor": "textfield",
+            "isSecret": true
+        },
+        "maxConcurrency": {
+            "title": "Max concurrency",
+            "type": "integer",
+            "description": "How many videos to read in parallel.",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 10,
+            "editor": "number"
+        }
+    },
+    "required": ["startUrls"]
+}

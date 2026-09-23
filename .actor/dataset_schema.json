@@ -1,0 +1,220 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "description": "One record per YouTube comment or reply from the official YouTube Data API v3. Records with success: true are comments (billed); records with success: false carry errorType and error for videos or inputs that could not be read (free).",
+        "properties": {
+            "success": {
+                "type": "boolean",
+                "description": "True for a delivered comment (billed); false for a failure record (free)."
+            },
+            "commentId": {
+                "type": "string",
+                "description": "YouTube comment ID."
+            },
+            "commentUrl": {
+                "type": "string",
+                "description": "Direct link that opens the video with this comment highlighted.",
+                "format": "uri"
+            },
+            "videoId": {
+                "type": ["string", "null"],
+                "description": "11-character YouTube video ID."
+            },
+            "videoUrl": {
+                "type": "string",
+                "description": "Watch URL of the video.",
+                "format": "uri"
+            },
+            "videoTitle": {
+                "type": ["string", "null"],
+                "description": "Title of the video."
+            },
+            "videoChannelId": {
+                "type": ["string", "null"],
+                "description": "Channel ID of the video owner."
+            },
+            "videoChannelTitle": {
+                "type": ["string", "null"],
+                "description": "Name of the video owner channel."
+            },
+            "text": {
+                "type": "string",
+                "description": "Comment text as the author wrote it (plain text)."
+            },
+            "likeCount": {
+                "type": "integer",
+                "description": "Number of likes on the comment."
+            },
+            "replyCount": {
+                "type": ["integer", "null"],
+                "description": "Total replies under a top-level comment (null for replies)."
+            },
+            "isReply": {
+                "type": "boolean",
+                "description": "True when this record is a reply to another comment."
+            },
+            "parentCommentId": {
+                "type": ["string", "null"],
+                "description": "For replies, the ID of the top-level comment."
+            },
+            "isByVideoOwner": {
+                "type": "boolean",
+                "description": "True when the video owner wrote the comment."
+            },
+            "publishedAt": {
+                "type": ["string", "null"],
+                "description": "When the comment was posted (ISO 8601).",
+                "format": "date-time"
+            },
+            "updatedAt": {
+                "type": ["string", "null"],
+                "description": "When the comment was last edited (ISO 8601).",
+                "format": "date-time"
+            },
+            "isEdited": {
+                "type": "boolean",
+                "description": "True when the comment was edited after posting."
+            },
+            "authorName": {
+                "type": ["string", "null"],
+                "description": "Public display name of the commenter (null when author data is hashed or omitted)."
+            },
+            "authorChannelId": {
+                "type": ["string", "null"],
+                "description": "Commenter channel ID, or a stable 16-character hash when author data is pseudonymised."
+            },
+            "authorChannelUrl": {
+                "type": ["string", "null"],
+                "description": "Commenter channel URL (null when hashed or omitted)."
+            },
+            "authorProfileImageUrl": {
+                "type": ["string", "null"],
+                "description": "Commenter avatar URL (null when hashed or omitted)."
+            },
+            "input": {
+                "type": "string",
+                "description": "Failure records only: the input line that failed."
+            },
+            "errorType": {
+                "type": "string",
+                "description": "Failure records only: why the input could not be read.",
+                "enum": [
+                    "missing-api-key",
+                    "invalid-url",
+                    "not-found",
+                    "comments-disabled",
+                    "rate-limited",
+                    "http-error",
+                    "timeout",
+                    "network",
+                    "other"
+                ]
+            },
+            "error": {
+                "type": "string",
+                "description": "Failure records only: human-readable explanation."
+            },
+            "statusCode": {
+                "type": "integer",
+                "description": "Failure records only: HTTP status from the YouTube API, when there was one."
+            },
+            "scrapedAt": {
+                "type": "string",
+                "description": "When the record was produced (ISO 8601).",
+                "format": "date-time"
+            }
+        },
+        "required": ["success", "scrapedAt"]
+    },
+    "views": {
+        "overview": {
+            "title": "Comments",
+            "transformation": {
+                "fields": [
+                    "videoTitle",
+                    "authorName",
+                    "text",
+                    "likeCount",
+                    "replyCount",
+                    "isReply",
+                    "isByVideoOwner",
+                    "publishedAt",
+                    "commentUrl"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "videoTitle": {
+                        "label": "Video",
+                        "format": "text"
+                    },
+                    "authorName": {
+                        "label": "Author",
+                        "format": "text"
+                    },
+                    "text": {
+                        "label": "Comment",
+                        "format": "text"
+                    },
+                    "likeCount": {
+                        "label": "Likes",
+                        "format": "number"
+                    },
+                    "replyCount": {
+                        "label": "Replies",
+                        "format": "number"
+                    },
+                    "isReply": {
+                        "label": "Reply?",
+                        "format": "boolean"
+                    },
+                    "isByVideoOwner": {
+                        "label": "By creator",
+                        "format": "boolean"
+                    },
+                    "publishedAt": {
+                        "label": "Posted",
+                        "format": "date"
+                    },
+                    "commentUrl": {
+                        "label": "Link",
+                        "format": "link"
+                    }
+                }
+            }
+        },
+        "failures": {
+            "title": "Failures",
+            "transformation": {
+                "fields": ["input", "videoId", "errorType", "error", "statusCode"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "input": {
+                        "label": "Input",
+                        "format": "text"
+                    },
+                    "videoId": {
+                        "label": "Video ID",
+                        "format": "text"
+                    },
+                    "errorType": {
+                        "label": "Error type",
+                        "format": "text"
+                    },
+                    "error": {
+                        "label": "Error",
+                        "format": "text"
+                    },
+                    "statusCode": {
+                        "label": "HTTP",
+                        "format": "number"
+                    }
+                }
+            }
+        }
+    }
+}

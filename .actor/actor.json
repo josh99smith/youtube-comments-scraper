@@ -1,0 +1,21 @@
+{
+    "$schema": "https://apify.com/schemas/v1/actor.ide.json",
+    "actorSpecification": 1,
+    "name": "youtube-comments-scraper",
+    "title": "Best Damn YouTube Comments Scraper",
+    "description": "Scrape YouTube comments and replies from videos, Shorts and whole channels through the official YouTube Data API: text, likes, reply counts, dates and author. Sort, filter by keyword or date. Pay per comment; failures are free.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "ts-empty",
+        "generatedBy": "Claude Code with Claude Opus 5.5"
+    },
+    "inputSchema": "./input_schema.json",
+    "outputSchema": "./output_schema.json",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "dockerfile": "../Dockerfile",
+    "minMemoryMbytes": 256,
+    "maxMemoryMbytes": 1024
+}

@@ -1,0 +1,53 @@
+[
+    {
+        "name": "scrape-comments-from-a-youtube-video",
+        "title": "Scrape all comments from a YouTube video",
+        "seoTitle": "Scrape all comments from a YouTube video to CSV",
+        "seoDescription": "Export every comment and reply on a YouTube video with likes, dates and author via the official API. Pay per comment, failures free.",
+        "description": "Export every comment on a YouTube video, with replies, likes, dates, author and a link to each comment, through the official YouTube Data API. Download as CSV, Excel or JSON.",
+        "input": {
+            "startUrls": ["https://www.youtube.com/watch?v=jNQXAC9IVRw"],
+            "maxComments": 1000,
+            "includeReplies": true
+        }
+    },
+    {
+        "name": "monitor-new-youtube-comments-daily",
+        "title": "Monitor new comments on a YouTube channel daily",
+        "seoTitle": "Monitor new YouTube comments on a channel every day",
+        "seoDescription": "Schedule a daily run that collects only the last day of comments on a channel's recent videos, newest first, for Slack alerts or sentiment tracking.",
+        "description": "Collect only the comments posted in the last day on a channel's most recent videos, newest first. Schedule it daily and connect Slack, Google Sheets or a webhook to follow your audience in near real time.",
+        "input": {
+            "startUrls": ["https://www.youtube.com/@YouTube"],
+            "maxVideosPerChannel": 5,
+            "sortBy": "time",
+            "publishedAfter": "1 day",
+            "maxComments": 0
+        }
+    },
+    {
+        "name": "youtube-comments-for-sentiment-analysis",
+        "title": "YouTube comments dataset for sentiment analysis",
+        "seoTitle": "YouTube comments dataset for sentiment analysis",
+        "seoDescription": "Collect top YouTube comments with likes and replies and pseudonymised authors, ready for sentiment analysis, topic modelling or LLM fine-tuning.",
+        "description": "Build a privacy-friendly comment dataset for sentiment analysis or LLM training: top comments with likes and reply counts, authors replaced by stable pseudonymous IDs.",
+        "input": {
+            "startUrls": ["https://www.youtube.com/watch?v=jNQXAC9IVRw", "https://www.youtube.com/@YouTube"],
+            "maxVideosPerChannel": 3,
+            "maxComments": 500,
+            "authorData": "hash"
+        }
+    },
+    {
+        "name": "find-youtube-comments-mentioning-a-keyword",
+        "title": "Find YouTube comments that mention a keyword",
+        "seoTitle": "Find YouTube comments mentioning a brand or keyword",
+        "seoDescription": "Search the comments of YouTube videos for a brand, product or keyword and export the matching comments with likes and links. Pay per comment.",
+        "description": "Search the comments under one or more YouTube videos for a word or brand and export only the matching comments, with likes, dates and a direct link to each one.",
+        "input": {
+            "startUrls": ["https://www.youtube.com/watch?v=jNQXAC9IVRw"],
+            "searchTerms": "zoo",
+            "maxComments": 200
+        }
+    }
+]

@@ -1,0 +1,22 @@
+{
+    "seoTitle": "YouTube Comments Scraper API: comments & replies to CSV",
+    "seoDescription": "Scrape YouTube comments and replies from videos, Shorts and channels via the official API, with date and keyword filters. $0.40 per 1k comments.",
+    "categories": ["SOCIAL_MEDIA", "VIDEOS", "MARKETING"],
+    "isPublic": false,
+    "actorPermissionLevel": "LIMITED_PERMISSIONS",
+    "defaultRunOptions": {
+        "build": "latest",
+        "memoryMbytes": 512,
+        "timeoutSecs": 3600
+    },
+    "pricing": {
+        "events": {
+            "comment": {
+                "eventTitle": "Comment scraped",
+                "eventDescription": "One YouTube comment or reply delivered to the dataset with text, likes, dates and video details. Videos with comments turned off, private or deleted videos and quota errors are not charged.",
+                "eventPriceUsd": 0.0004,
+                "isPrimaryEvent": true
+            }
+        }
+    }
+}

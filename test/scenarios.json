@@ -1,0 +1,91 @@
+{
+    "prefill": {
+        "input": {
+            "startUrls": ["https://www.youtube.com/watch?v=jNQXAC9IVRw"],
+            "maxComments": 50
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "minOk": 50,
+            "maxItems": 50,
+            "maxFailed": 0,
+            "maxDurationSecs": 60
+        }
+    },
+    "channel-replies-hash": {
+        "input": {
+            "startUrls": ["@YouTube"],
+            "maxVideosPerChannel": 2,
+            "maxComments": 40,
+            "includeReplies": true,
+            "authorData": "hash"
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "minOk": 1,
+            "maxFailed": 0,
+            "maxDurationSecs": 120
+        }
+    },
+    "newest-with-cutoff": {
+        "input": {
+            "startUrls": ["jNQXAC9IVRw"],
+            "sortBy": "time",
+            "publishedAfter": "1 day",
+            "maxComments": 30
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "minOk": 1,
+            "maxFailed": 0
+        }
+    },
+    "mixed-failures": {
+        "input": {
+            "startUrls": [
+                "https://example.com/nope",
+                "https://www.youtube.com/watch?v=aaaaaaaaaaa",
+                "https://www.youtube.com/watch?v=XqZsoesa55w",
+                "https://youtu.be/jNQXAC9IVRw"
+            ],
+            "maxComments": 5
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "minOk": 5,
+            "errorTypes": ["invalid-url", "not-found", "comments-disabled"]
+        }
+    },
+    "bad-key": {
+        "input": {
+            "startUrls": ["jNQXAC9IVRw"],
+            "apiKey": "invalid-key-for-testing"
+        },
+        "expect": {
+            "status": "SUCCEEDED",
+            "maxOk": 0,
+            "errorTypes": ["other"]
+        }
+    },
+    "budget-stop": {
+        "input": {
+            "startUrls": ["jNQXAC9IVRw"],
+            "maxComments": 0
+        },
+        "maxTotalChargeUsd": 0.02,
+        "expect": {
+            "status": "SUCCEEDED",
+            "stoppedEarlyDueToBudget": true,
+            "maxCostUsd": 0.03
+        }
+    },
+    "empty-input": {
+        "input": {
+            "startUrls": []
+        },
+        "expect": {
+            "status": "FAILED",
+            "maxItems": 0
+        }
+    }
+}

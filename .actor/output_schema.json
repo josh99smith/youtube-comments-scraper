@@ -1,0 +1,18 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Best Damn YouTube Comments Scraper output",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Comments",
+            "template": "{{links.apiDefaultDatasetUrl}}",
+            "description": "One record per comment or reply with text, likes, reply count, dates, video and (optionally) author, plus free failure records for videos that could not be read."
+        },
+        "summary": {
+            "type": "string",
+            "title": "Run summary",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/SUMMARY",
+            "description": "Counts of videos, comments per video, failures, quota units used and billed comments."
+        }
+    }
+}
