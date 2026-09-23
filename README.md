@@ -1,4 +1,4 @@
-![youtube-comments-scraper banner](https://raw.githubusercontent.com/josh99smith/apify-actor-assets/main/banners/youtube-comments-scraper.png)
+![youtube-comments-scraper banner](https://raw.githubusercontent.com/josh99smith/apify-actor-assets/main/banners/youtube-comments-scraper.png?v=bd1)
 
 Get **YouTube comments and replies** from any video, Short or whole channel through the **official YouTube Data API v3**: comment text, likes, reply counts, post and edit dates, whether the creator wrote it, and a direct link to every comment, in one downloadable dataset.
 

@@ -1,8 +1,12 @@
 {
-    "seoTitle": "YouTube Comments Scraper API: comments & replies to CSV",
+    "seoTitle": "Best Damn YouTube Comments Scraper API: comments & replies",
     "seoDescription": "Scrape YouTube comments and replies from videos, Shorts and channels via the official API, with date and keyword filters. $0.40 per 1k comments.",
-    "categories": ["SOCIAL_MEDIA", "VIDEOS", "MARKETING"],
-    "isPublic": false,
+    "categories": [
+        "SOCIAL_MEDIA",
+        "VIDEOS",
+        "MARKETING"
+    ],
+    "isPublic": true,
     "actorPermissionLevel": "LIMITED_PERMISSIONS",
     "defaultRunOptions": {
         "build": "latest",
